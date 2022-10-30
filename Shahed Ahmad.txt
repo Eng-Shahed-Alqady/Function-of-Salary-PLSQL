@@ -1,0 +1,25 @@
+create or replace function calculate_salary return number
+is
+p_date varchar2(20);
+p_sal scott.emp.sal%type;
+p_totalsal number(20):=0;
+begin
+
+select sysdate, sal, (sal-((sal/30)*((round(sysdate, 'month')-1 - sysdate)))) into p_date, p_sal, p_totalsal
+from scott.emp;
+dbms_output.put_line(p_totalsal);
+return p_totalsal;
+
+end;
+***********************************************
+Function created.
+
+
+
+
+-------------------------------------------
+
+select sysdate, sal, sal/30, (sal-((sal/30)*((round(sysdate, 'month')-1 - sysdate)))) 
+from scott.emp;
+************************************************
+Statement Processed
